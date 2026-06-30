@@ -1,0 +1,13 @@
+{
+  "name": "ideolux-cloudflare-pages-api-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "check": "node --check public/app.js && node --check functions/api/health.js && node --check functions/api/opus.js && node --check functions/api/wp/root.js && node --check functions/api/wp/frontpage.js && node --check functions/api/wp/pages.js && node --check shared/wp-utils.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ideolux API Content Renderer</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">Ideolux API smoke test</p>
+        <h1>Rendered content from WordPress + Opus</h1>
+        <p class="lead">
+          This page calls Cloudflare Pages Functions, receives real content from two external services,
+          and renders it as page sections, cards, documents and product previews — not just raw JSON.
+        </p>
+      </div>
+      <div class="heroActions">
+        <button id="healthBtn" class="btn secondary">Run health check</button>
+        <a class="btn ghost" href="#debug">Debug JSON</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel control-card">
+        <div class="cardHeader">
+          <div>
+            <p class="eyebrow">Source 1</p>
+            <h2>WordPress content</h2>
+          </div>
+          <span id="wpStatus" class="status idle">Idle</span>
+        </div>
+        <p class="muted">
+          Fetches published WordPress pages through the REST API and renders title, excerpt, image and body.
+        </p>
+        <label>
+          Page slug
+          <input id="wpSlug" value="company" placeholder="company" />
+        </label>
+        <div class="buttonRow">
+          <button id="wpFrontBtn" class="btn">Render front page</button>
+          <button id="wpSlugBtn" class="btn secondary">Render by slug</button>
+          <button id="wpListBtn" class="btn secondary">Render pages list</button>
+        </div>
+      </article>
+
+      <article class="panel control-card">
+        <div class="cardHeader">
+          <div>
+            <p class="eyebrow">Source 2</p>
+            <h2>Opus content</h2>
+          </div>
+          <span id="opusStatus" class="status idle">Idle</span>
+        </div>
+        <p class="muted">
+          Paste any GET URL from Opus Swagger. JSON becomes product/content cards. Documents become embedded previews.
+        </p>
+        <label>
+          Opus API / document URL
+          <input id="opusUrl" value="https://ideolux.hm-opus.com/document/datasheet/00137ef9-c336-5537-8804-32b37be4e3a2" />
+        </label>
+        <div class="buttonRow">
+          <button id="opusFetchBtn" class="btn">Render Opus URL</button>
+          <button id="opusSampleBtn" class="btn secondary">Render sample document</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="cardHeader">
+        <div>
+          <p class="eyebrow">Preview</p>
+          <h2>Rendered content</h2>
+        </div>
+        <span id="previewStatus" class="status idle">Waiting</span>
+      </div>
+      <div id="preview" class="preview empty">
+        <p>Select a WordPress or Opus action above. The rendered result will appear here.</p>
+      </div>
+    </section>
+
+    <section id="debug" class="panel debugPanel">
+      <details>
+        <summary>Debug JSON / technical response</summary>
+        <pre id="debugOutput">No request yet.</pre>
+      </details>
+    </section>
+  </main>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
